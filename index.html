@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ClawParallel — PARALLEL System Assistant</title>
 
   <style>
@@ -10,19 +10,19 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Inter, Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
-      background: #000;
+      background-color: #000;
       color: #fff;
       line-height: 1.6;
     }
 
     a {
-      color: #fff;
+      color: #ffffff;
       text-decoration: none;
-      opacity: 0.8;
+      opacity: 0.75;
     }
 
     a:hover {
@@ -37,46 +37,58 @@
     header h1 {
       font-size: 48px;
       font-weight: 800;
-      letter-spacing: -1px;
+      margin-bottom: 20px;
     }
 
     header p {
-      margin-top: 20px;
       font-size: 18px;
-      opacity: 0.75;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      opacity: 0.8;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
-    .hero-image {
-      margin-top: 50px;
+    .avatar {
+      margin-top: 40px;
     }
 
-    .hero-image img {
-      width: 220px;
+    .avatar img {
+      width: 180px;
+      height: 180px;
+      border-radius: 24px;
+      border: 1px solid #222;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .hero-box {
+      display: inline-block;
+      padding: 18px 24px;
+      border: 1px solid #1a1a1a;
       border-radius: 20px;
+      background-color: #0b0b0b;
+      font-size: 14px;
+      letter-spacing: 0.3px;
     }
 
     section {
-      padding: 80px 20px;
+      padding: 70px 20px;
       max-width: 900px;
       margin: 0 auto;
     }
 
     section h2 {
       font-size: 32px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     section p {
       font-size: 17px;
       opacity: 0.8;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .card {
-      background: #0c0c0c;
+      background-color: #0d0d0d;
       border: 1px solid #1a1a1a;
       border-radius: 16px;
       padding: 24px;
@@ -87,25 +99,20 @@
       background: linear-gradient(135deg, #111, #050505);
       border: 1px solid #222;
       border-radius: 20px;
-      padding: 30px;
+      padding: 32px;
       text-align: center;
     }
 
     .token-box h3 {
       font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    .token-box p {
-      opacity: 0.75;
-      font-size: 16px;
+      margin-bottom: 12px;
     }
 
     footer {
       padding: 60px 20px;
       text-align: center;
       border-top: 1px solid #111;
-      opacity: 0.8;
+      opacity: 0.75;
     }
   </style>
 </head>
@@ -116,62 +123,49 @@
   <header>
     <h1>ClawParallel</h1>
     <p>
-      A system-level assistant built for the PARALLEL universe.  
+      A system-level assistant built for the PARALLEL universe.
       Not a chatbot. Not a meme. A protocol-native intelligence layer.
     </p>
 
-    <div class="hero-image">
-      <!-- Ganti src dengan image kamu -->
-      <img src="clawparallel.png" alt="ClawParallel Avatar">
+    <div class="avatar">
+      <img src="avatar.png" alt="ClawParallel Avatar" />
+      <div class="hero-box">
+        System assistant • Token-coordinated • Protocol-aligned
+      </div>
     </div>
   </header>
 
   <!-- WHAT IS -->
   <section>
     <h2>What is ClawParallel?</h2>
-    <p>
-      ClawParallel is the official assistant interface for PARALLEL —
-      designed to translate ecosystem complexity into actionable signals.
-    </p>
 
     <div class="card">
       <p>
-        It observes.  
-        It indexes.  
-        It responds.
+        ClawParallel is the assistant interface for the PARALLEL ecosystem,
+        designed to translate complex systems into clear, actionable outputs.
       </p>
       <p>
-        From game updates, NFT mechanics, governance logic,
-        to token-level coordination — ClawParallel exists to reduce friction
-        between users and the PARALLEL system.
+        It indexes updates, interprets mechanics, and responds with context —
+        reducing friction between users and the protocol.
       </p>
     </div>
   </section>
 
   <!-- WHY -->
   <section>
-    <h2>Why ClawParallel exists</h2>
+    <h2>Why it exists</h2>
 
     <div class="card">
       <p>
-        Web3 doesn’t need more noise.  
-        It needs clarity.
+        As PARALLEL scales across games, assets, and agents,
+        clarity becomes the bottleneck.
       </p>
     </div>
 
     <div class="card">
       <p>
-        PARALLEL is expanding — games, assets, players, agents.
-        ClawParallel acts as the connective tissue between them.
-      </p>
-    </div>
-
-    <div class="card">
-      <p>
-        Think of it as:
-        <br>• a guide for new users  
-        <br>• a console for power users  
-        <br>• a surface layer for on-chain intelligence
+        ClawParallel exists to be the connective layer —
+        guiding users, powering automation, and enabling coordination.
       </p>
     </div>
   </section>
@@ -184,54 +178,48 @@
       <h3>$CLAWP</h3>
       <p>
         The coordination token of ClawParallel.
-        <br><br>
-        Used for access, signaling, automation triggers,
+      </p>
+      <p>
+        Used for access control, signaling, automation triggers,
         and future agent permissions.
       </p>
-      <p style="margin-top:15px; opacity:0.6;">
-        Deployed via Bankrbot.  
-        No VC. No shortcuts. Pure system alignment.
+      <p style="opacity:0.6;">
+        Deployed via Bankrbot. No VC. No shortcuts.
       </p>
     </div>
   </section>
 
   <!-- ROADMAP -->
   <section>
-    <h2>Roadmap (High-level)</h2>
+    <h2>Roadmap</h2>
 
     <div class="card">
       <p>
-        Phase 1 — Foundation  
-        <br>• Core assistant logic  
-        <br>• Documentation & public interface  
-        <br>• $CLAWP deployment
+        Phase 1 — Foundation<br>
+        Core logic, documentation, public interface, token deployment
       </p>
     </div>
 
     <div class="card">
       <p>
-        Phase 2 — Integration  
-        <br>• PARALLEL data adapters  
-        <br>• Discord & X interfaces  
-        <br>• Token-gated features
+        Phase 2 — Integration<br>
+        PARALLEL adapters, Discord & X interfaces, gated features
       </p>
     </div>
 
     <div class="card">
       <p>
-        Phase 3 — Autonomy  
-        <br>• Agent-based execution  
-        <br>• On-chain triggers  
-        <br>• Self-updating intelligence loops
+        Phase 3 — Autonomy<br>
+        Agent execution, on-chain triggers, self-updating intelligence
       </p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div style="margin-bottom:12px;">
-      <a href="https://x.com/clawparallel" target="_blank">X / Twitter</a>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
+    <div style="margin-bottom:10px;">
+      <a href="https://x.com/paralleldotvibe" target="_blank">X / Twitter</a>
+      &nbsp;|&nbsp;
       <a href="https://discord.gg/7AnKntXSQx" target="_blank">Discord</a>
     </div>
 
