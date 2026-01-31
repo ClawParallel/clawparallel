@@ -6,6 +6,16 @@
   <title>ClawParallel — PARALLEL System Assistant</title>
 
   <style>
+    :root {
+      --bg-main: #06060f;
+      --card-bg: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --accent: #7c7cff;
+      --accent-2: #00e0ff;
+      --text-main: #ffffff;
+      --text-soft: rgba(255,255,255,0.78);
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,105 +24,116 @@
     }
 
     body {
-      background-color: #000;
-      color: #fff;
+      background:
+        radial-gradient(circle at top, #141437, transparent 55%),
+        linear-gradient(180deg, #020207, var(--bg-main));
+      color: var(--text-main);
       line-height: 1.6;
     }
 
-    a {
-      color: #ffffff;
-      text-decoration: none;
-      opacity: 0.75;
-    }
-
-    a:hover {
-      opacity: 1;
-    }
-
     header {
-      padding: 80px 20px 60px;
+      padding: 90px 20px 70px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 48px;
+      font-size: 52px;
       font-weight: 800;
-      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     header p {
+      margin-top: 20px;
       font-size: 18px;
-      opacity: 0.8;
+      color: var(--text-soft);
       max-width: 720px;
-      margin: 0 auto;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .avatar {
-      margin-top: 40px;
+      margin-top: 45px;
     }
 
     .avatar img {
-      width: 180px;
-      height: 180px;
-      border-radius: 24px;
-      border: 1px solid #222;
-      object-fit: cover;
-      margin-bottom: 20px;
+      width: 170px;
+      height: 170px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 35px rgba(124,124,255,0.25);
+      margin-bottom: 22px;
     }
 
     .hero-box {
       display: inline-block;
-      padding: 18px 24px;
-      border: 1px solid #1a1a1a;
+      padding: 16px 24px;
       border-radius: 20px;
-      background-color: #0b0b0b;
+      background: linear-gradient(
+        135deg,
+        rgba(124,124,255,0.2),
+        rgba(0,224,255,0.15)
+      );
+      border: 1px solid var(--border);
       font-size: 14px;
-      letter-spacing: 0.3px;
     }
 
     section {
-      padding: 70px 20px;
-      max-width: 900px;
+      padding: 80px 20px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
     section h2 {
-      font-size: 32px;
-      margin-bottom: 24px;
-    }
-
-    section p {
-      font-size: 17px;
-      opacity: 0.8;
-      margin-bottom: 16px;
+      font-size: 34px;
+      margin-bottom: 26px;
+      background: linear-gradient(90deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .card {
-      background-color: #0d0d0d;
-      border: 1px solid #1a1a1a;
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    .card p {
+      color: var(--text-soft);
+      font-size: 16px;
+      margin-bottom: 10px;
     }
 
     .token-box {
-      background: linear-gradient(135deg, #111, #050505);
-      border: 1px solid #222;
-      border-radius: 20px;
-      padding: 32px;
+      background: linear-gradient(
+        135deg,
+        rgba(124,124,255,0.25),
+        rgba(0,224,255,0.18)
+      );
+      border-radius: 26px;
+      padding: 36px;
       text-align: center;
-    }
-
-    .token-box h3 {
-      font-size: 28px;
-      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 45px rgba(0,224,255,0.2);
     }
 
     footer {
-      padding: 60px 20px;
+      padding: 70px 20px;
       text-align: center;
-      border-top: 1px solid #111;
-      opacity: 0.75;
+      border-top: 1px solid var(--border);
+      color: var(--text-soft);
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -123,8 +144,8 @@
   <header>
     <h1>ClawParallel</h1>
     <p>
-      A system-level assistant built for the PARALLEL universe.
-      Not a chatbot. Not a meme. A protocol-native intelligence layer.
+      A colorful yet serious assistant built for the PARALLEL universe.
+      Simple to understand. Powerful by design.
     </p>
 
     <div class="avatar">
@@ -138,35 +159,39 @@
   <!-- WHAT IS -->
   <section>
     <h2>What is ClawParallel?</h2>
-
     <div class="card">
       <p>
-        ClawParallel is the assistant interface for the PARALLEL ecosystem,
-        designed to translate complex systems into clear, actionable outputs.
+        ClawParallel is a system assistant that helps users understand,
+        navigate, and interact with the PARALLEL ecosystem.
       </p>
       <p>
-        It indexes updates, interprets mechanics, and responds with context —
-        reducing friction between users and the protocol.
+        It simplifies information, explains mechanics,
+        and turns complexity into clarity.
       </p>
     </div>
   </section>
 
-  <!-- WHY -->
+  <!-- SPECIAL SECTION -->
   <section>
-    <h2>Why it exists</h2>
+    <h2>What can ClawParallel do?</h2>
 
     <div class="card">
-      <p>
-        As PARALLEL scales across games, assets, and agents,
-        clarity becomes the bottleneck.
-      </p>
+      <p>📌 Explain PARALLEL games, NFTs, and mechanics in simple terms</p>
+      <p>📊 Surface important updates, changes, and signals</p>
+      <p>🤖 Act as an assistant across Discord, X, and web</p>
+      <p>🔐 Unlock features through $CLAWP coordination</p>
     </div>
+  </section>
+
+  <!-- WHO -->
+  <section>
+    <h2>Who is this for?</h2>
 
     <div class="card">
-      <p>
-        ClawParallel exists to be the connective layer —
-        guiding users, powering automation, and enabling coordination.
-      </p>
+      <p>👤 New users who want clarity, not confusion</p>
+      <p>🎮 Players who want to understand systems faster</p>
+      <p>🧠 Power users who want structured information</p>
+      <p>🌐 Community members building around PARALLEL</p>
     </div>
   </section>
 
@@ -176,14 +201,12 @@
 
     <div class="token-box">
       <h3>$CLAWP</h3>
+      <p>The coordination token of ClawParallel.</p>
       <p>
-        The coordination token of ClawParallel.
-      </p>
-      <p>
-        Used for access control, signaling, automation triggers,
+        Used for access, signaling, automation triggers,
         and future agent permissions.
       </p>
-      <p style="opacity:0.6;">
+      <p style="opacity:0.75;">
         Deployed via Bankrbot. No VC. No shortcuts.
       </p>
     </div>
@@ -194,37 +217,21 @@
     <h2>Roadmap</h2>
 
     <div class="card">
-      <p>
-        Phase 1 — Foundation<br>
-        Core logic, documentation, public interface, token deployment
-      </p>
-    </div>
-
-    <div class="card">
-      <p>
-        Phase 2 — Integration<br>
-        PARALLEL adapters, Discord & X interfaces, gated features
-      </p>
-    </div>
-
-    <div class="card">
-      <p>
-        Phase 3 — Autonomy<br>
-        Agent execution, on-chain triggers, self-updating intelligence
-      </p>
+      <p><strong>Phase 1 — Foundation</strong><br>Assistant core & public interface</p>
+      <p><strong>Phase 2 — Integration</strong><br>Discord, X, and PARALLEL adapters</p>
+      <p><strong>Phase 3 — Autonomy</strong><br>On-chain triggers & agent execution</p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div style="margin-bottom:10px;">
-      <a href="https://x.com/paralleldotvibe" target="_blank">X / Twitter</a>
+    <div style="margin-bottom:12px;">
+      <a href="https://x.com/clawparallel" target="_blank">X / Twitter</a>
       &nbsp;|&nbsp;
       <a href="https://discord.gg/7AnKntXSQx" target="_blank">Discord</a>
     </div>
-
     <div>
-      ClawParallel — built for PARALLEL, not for hype.
+      ClawParallel — simple on the surface, powerful underneath.
     </div>
   </footer>
 
