@@ -1,0 +1,16 @@
+{
+  "name": "clawparallel",
+  "version": "0.1.0",
+  "description": "System-level assistant for the PARALLEL universe",
+  "scripts": {
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "@types/node": "^20.0.0"
+  }
+}
