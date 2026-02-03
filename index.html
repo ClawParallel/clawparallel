@@ -200,17 +200,57 @@
     <h2>$CLAWP Token</h2>
 
     <div class="token-box">
-      <h3>$CLAWP</h3>
-      <p>The coordination token of ClawParallel.</p>
-      <p>
-        Used for access, signaling, automation triggers,
-        and future agent permissions.
-      </p>
-      <p style="opacity:0.75;">
-        Deployed via Bankrbot. No VC. No shortcuts.
-      </p>
+  <h3>$CLAWP</h3>
+
+  <p style="margin-bottom:6px;">
+    The coordination token of ClawParallel.
+  </p>
+
+  <p style="margin-bottom:12px;">
+    Used for access, signaling, automation triggers,
+    and future agent permissions.
+  </p>
+
+  <!-- COUNTDOWN -->
+  <div
+    id="countdown"
+    style="
+      margin:16px 0 6px;
+      font-size:18px;
+      font-weight:700;
+    "
+  >
+    Token live in: --
+  </div>
+
+  <div style="font-size:13px;opacity:0.75;">
+    Live between 20:00 – 21:00 UTC<br>
+    (03:00 – 04:00 WIB)
+  </div>
+
+  <!-- BUTTON -->
+  <div style="margin-top:18px;">
+    <a
+      href="https://clanker.world"
+      target="_blank"
+      style="
+        display:inline-block;
+        padding:12px 26px;
+        border-radius:14px;
+        background:linear-gradient(90deg,#7c7cff,#00e0ff);
+        color:#000;
+        font-weight:800;
+        font-size:14px;
+      "
+    >
+      View on Clanker
+    </a>
+  </div>
+
+  <p style="margin-top:18px;opacity:0.7;font-size:13px;">
+    Deployed via Clanker. No VC. No shortcuts.
+  </p>
     </div>
-  </section>
 
   <!-- ROADMAP -->
   <section>
@@ -234,6 +274,41 @@
       ClawParallel — simple on the surface, powerful underneath.
     </div>
   </footer>
+<script>
+  const launchTimeUTC = new Date(Date.UTC(
+    2026, // YEAR
+    1,    // MONTH (0 = Jan)
+    3,    // DAY
+    20,   // HOUR UTC
+    0,    // MIN
+    0
+  ));
 
+  function updateCountdown() {
+    const now = new Date();
+    const diff = launchTimeUTC - now;
+    const el = document.getElementById("countdown");
+
+    if (!el) return;
+
+    if (diff <= 0) {
+      el.innerHTML = "🚀 Token is LIVE";
+      return;
+    }
+
+    const h = Math.floor(diff / (1000 * 60 * 60));
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    el.innerHTML =
+      "Token live in: " +
+      String(h).padStart(2, "0") + ":" +
+      String(m).padStart(2, "0") + ":" +
+      String(s).padStart(2, "0");
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+    </script>
 </body>
 </html>
