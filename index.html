@@ -231,20 +231,48 @@
   <!-- BUTTON -->
   <div style="margin-top:18px;">
     <a
-      href="https://clanker.world"
-      target="_blank"
-      style="
-        display:inline-block;
-        padding:12px 26px;
-        border-radius:14px;
-        background:linear-gradient(90deg,#7c7cff,#00e0ff);
-        color:#000;
-        font-weight:800;
-        font-size:14px;
-      "
-    >
-      View on Clanker
+  id="actionButton"
+  href="https://clanker.world"
+  target="_blank"
+  style="
+    display:inline-block;
+    padding:12px 26px;
+    border-radius:14px;
+    background:linear-gradient(90deg,#7c7cff,#00e0ff);
+    color:#000;
+    font-weight:800;
+    font-size:14px;
+  "
+>
+  View on Clanker
     </a>
+    <!-- CONTRACT ADDRESS -->
+<div style="margin-top:14px;font-size:13px;opacity:0.85;">
+  Contract Address
+</div>
+
+<div
+  onclick="copyCA()"
+  style="
+    margin-top:6px;
+    padding:10px 14px;
+    border-radius:12px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    cursor:pointer;
+    font-size:13px;
+    word-break:break-all;
+  "
+>
+  <span id="ca">
+    0xISI_CONTRACT_CLAW_P_DISINI
+  </span>
+</div>
+
+<div
+  id="copyStatus"
+  style="margin-top:6px;font-size:12px;opacity:0.6;"
+></div>
   </div>
 
   <p style="margin-top:18px;opacity:0.7;font-size:13px;">
@@ -276,23 +304,24 @@
   </footer>
 <script>
   const launchTimeUTC = new Date(Date.UTC(
-    2026, // YEAR
-    1,    // MONTH (0 = Jan)
-    3,    // DAY
-    20,   // HOUR UTC
-    0,    // MIN
-    0
+    2026, 1, 3, 20, 0, 0
   ));
 
   function updateCountdown() {
     const now = new Date();
     const diff = launchTimeUTC - now;
-    const el = document.getElementById("countdown");
 
-    if (!el) return;
+    const countdown = document.getElementById("countdown");
+    const btn = document.getElementById("actionButton");
+
+    if (!countdown || !btn) return;
 
     if (diff <= 0) {
-      el.innerHTML = "🚀 Token is LIVE";
+      countdown.innerHTML = "🚀 Token is LIVE";
+
+      btn.innerHTML = "Trade $CLAWP";
+      btn.href = "https://clanker.world"; // nanti ganti link pool
+
       return;
     }
 
@@ -300,15 +329,27 @@
     const m = Math.floor((diff / (1000 * 60)) % 60);
     const s = Math.floor((diff / 1000) % 60);
 
-    el.innerHTML =
+    countdown.innerHTML =
       "Token live in: " +
       String(h).padStart(2, "0") + ":" +
       String(m).padStart(2, "0") + ":" +
       String(s).padStart(2, "0");
   }
 
+  function copyCA() {
+    const text = document.getElementById("ca").innerText;
+    navigator.clipboard.writeText(text);
+
+    const status = document.getElementById("copyStatus");
+    status.innerHTML = "Copied to clipboard ✔";
+
+    setTimeout(() => {
+      status.innerHTML = "";
+    }, 2000);
+  }
+
   setInterval(updateCountdown, 1000);
   updateCountdown();
-    </script>
+</script>
 </body>
 </html>
