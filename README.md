@@ -119,7 +119,7 @@ RPC_URL= PRIVATE_KEY= CLAWP_CONTRACT=
 ## 🚀 How to Run (PC / VPS)
 
 ```bash
-git clone https://github.com/USERNAME/clawparallel
+git clone https://github.com/ClawParallel/clawparallel
 cd clawparallel
 npm install
 npm run dev
