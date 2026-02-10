@@ -59,20 +59,22 @@ User / Player ↓ ClawParallel Bot ↓ PARALLEL Adapter ↓ Quest / Lore / Logic
 ClawParallel is **off-chain by default**, but fully designed for **future on-chain upgrades**.
 
 ---
+## 📁 Project Structure
 
+```text
 clawparallel/
 ├── apps/
 │   ├── agent/
-│   │   ├── index.ts              # entry agent runtime
-│   │   └── lifecycle.ts          # start / stop / health
+│   │   ├── index.ts        # entry agent runtime
+│   │   └── lifecycle.ts   # start / stop / health
 │   │
 │   └── web/
-│       ├── server.ts             # express / api server
-│       └── routes.ts             # http routes
+│       ├── server.ts      # express / api server
+│       └── routes.ts      # http routes
 │
 ├── core/
 │   ├── config/
-│   │   ├── env.ts                # env loader & validation
+│   │   ├── env.ts         # env loader & validation
 │   │   └── constants.ts
 │   │
 │   ├── parallel/
@@ -85,7 +87,7 @@ clawparallel/
 │   │   └── economy.ts
 │   │
 │   ├── state/
-│   │   ├── memory.ts             # agent memory
+│   │   ├── memory.ts      # agent memory
 │   │   └── context.ts
 │   │
 │   └── utils/
@@ -102,7 +104,7 @@ clawparallel/
 │       └── quest.controller.ts
 │
 ├── public/
-│   └── index.html                # landing page
+│   └── index.html         # landing page
 │
 ├── scripts/
 │   ├── seed.ts
@@ -113,6 +115,7 @@ clawparallel/
 ├── tsconfig.json
 ├── vercel.json
 └── README.md
+
 
 ---
 
