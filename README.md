@@ -85,68 +85,74 @@ clawparallel/
 
 ---
 
-### 2️⃣ Save ke `README.md` di lokal
-- Buka file `README.md`
-- Paste isi di atas
-- **Save (Ctrl+S)**
-
-⚠️ Pastikan file benar-benar terisi sebelum commit.
+### ⚙️ Tech Stack
+- Node.js + TypeScript
+- Express
+- Bot Command System
+- Off-chain State Management
+- PARALLEL Adapter
 
 ---
 
-### 3️⃣ Commit perubahan
-Di terminal:
+### 1️⃣ Clone the Repository
+```
+git clone https://github.com/ClawParallel/clawparallel.git
+cd clawparallel
 
-```bash
-git add README.md
-git commit -m "Update README with full project documentation"
 ```
 
 ---
 
-### 4️⃣ Push ke GitHub
-Pastikan kamu berada di **branch utama** (`main`):
+### 2️⃣ Install Dependencies
 
-```bash
-git branch
+```
+npm install
+
 ```
 
-Kalau bukan `main`, checkout dulu:
+### 3️⃣ Configure Environment Variables
 
-```bash
-git checkout main
+```
+cp .env.example .env
+
 ```
 
-Lalu:
+### 4️⃣ Run the Development Server
 
-```bash
-git push origin main
 ```
+npm run dev
+
+```
+The server will be available at:
+```
+http://localhost:3000
+```
+---
+
+### 🎮 Core Concepts
+**Player**
+- Stores player progress
+- Completes quests
+- Earns rewards
+
+**Quest**
+- Modular logic
+- Extendable with lore and branching paths
+
+**Economy ($CLAWP)**
+- Off-chain rewards
+- Designed for on-chain migration
 
 ---
 
-### 5️⃣ Refresh halaman GitHub
-Buka kembali:
+## 🔮 Future Plans
 
-🔗 https://github.com/ClawParallel/clawparallel/blob/main/README.md
+- On-chain token deployment
+- Smart contract quest validation
+- Persistent player identity
+- Advanced agent memory
 
-Halaman sekarang **harusnya muncul isi README yang kamu paste**.
+## 📜 License
+**MIT License**
 
----
-
-## ⛔ Kalau setelah push masih kosong
-Biasanya ini karena:
-1) Kamu **push ke branch lain**  
-   → cek `git branch -a`  
-2) Konflik fork / default branch bukan `main`  
-   → periksa settings repo  
-3) Push gagal karena credential  
-   → login lagi / set remote
-
-Kalau itu masalahnya, kirim aku:
-- hasil `git branch -a`
-- hasil `git status`
-- output `git remote -v`
-
-Aku bantu kamu **fix langsung** 💪.
-::contentReference[oaicite:1]{index=1}
+Built with 🦀 by ClawParallel
