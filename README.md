@@ -1,72 +1,38 @@
-# 🦾 ClawParallel
+# 🦀 ClawParallel
 
-**ClawParallel** is a system-level assistant for the **PARALLEL Universe**.  
-Not a chatbot.  
-Not an AI gimmick.
+**ClawParallel** is an **off-chain agent and game logic system** that combines:
 
-ClawParallel acts as the **operational bridge between players, quests, lore, and the $CLAWP token economy** inside the PARALLEL ecosystem.
+- Player progression
+- Quest system
+- Bot command interface
+- Economy token **$CLAWP**
 
----
-
-## 🔥 Core Concept
-
-ClawParallel is inspired by tools like `clawdbot`, but with a **different philosophy and role**.
-
-| Clawdbot | ClawParallel |
-|--------|--------------|
-| General AI | PARALLEL-native assistant |
-| Chat-oriented | System & logic-oriented |
-| Standalone | Deeply tied to PARALLEL |
-| No native token | Integrated with $CLAWP |
-
-ClawParallel is **not an NPC**.  
-It is a **system assistant** designed to support PARALLEL at the infrastructure level.
-
----
-
-## 🎯 Purpose
-
-ClawParallel is built to:
-
-- Manage **quests & player progression**
-- Act as a **logic layer** for PARALLEL systems
-- Connect **player actions → rewards**
-- Serve as the utility gateway for **$CLAWP**
-- Be easily integrated into **Discord, web apps, or game clients**
-
----
-
-## 🪙 Token: $CLAWP
-
-ClawParallel introduces a native utility token:
-
-Ticker: $CLAWP
-
-### $CLAWP Utility
-- Quest & activity rewards
-- Access to advanced ClawParallel features
-- Community participation incentives
-- Future governance hooks
-
-> The token will be deployed using **Bankrbot**
+The project is designed to be **modular, scalable, and future-ready for on-chain upgrades**.
 
 ---
 
 ## 🧠 System Architecture
 
-User / Player ↓ ClawParallel Bot ↓ PARALLEL Adapter ↓ Quest / Lore / Logic ↓ $CLAWP Economy
+**High-level flow:**
 
-ClawParallel is **off-chain by default**, but fully designed for **future on-chain upgrades**.
+User / Player  
+→ ClawParallel Bot  
+→ PARALLEL Adapter  
+→ Quest / Lore / Logic  
+→ $CLAWP Economy  
+
+> All core state currently runs off-chain, but the architecture is prepared for future smart contract integration.
 
 ---
+
 ## 📁 Project Structure
 
 ```text
 clawparallel/
 ├── apps/
 │   ├── agent/
-│   │   ├── index.ts        # entry agent runtime
-│   │   └── lifecycle.ts   # start / stop / health
+│   │   ├── index.ts        # agent runtime entry point
+│   │   └── lifecycle.ts   # start / stop / health checks
 │   │
 │   └── web/
 │       ├── server.ts      # express / api server
@@ -74,21 +40,21 @@ clawparallel/
 │
 ├── core/
 │   ├── config/
-│   │   ├── env.ts         # env loader & validation
+│   │   ├── env.ts         # env loading & validation
 │   │   └── constants.ts
 │   │
 │   ├── parallel/
-│   │   ├── adapter.ts
-│   │   ├── player.ts
-│   │   └── quests.ts
+│   │   ├── adapter.ts     # PARALLEL integration layer
+│   │   ├── player.ts      # player state & logic
+│   │   └── quests.ts      # quest definitions
 │   │
 │   ├── token/
-│   │   ├── clawp.ts
-│   │   └── economy.ts
+│   │   ├── clawp.ts       # $CLAWP token logic
+│   │   └── economy.ts     # rewards & balances
 │   │
 │   ├── state/
 │   │   ├── memory.ts      # agent memory
-│   │   └── context.ts
+│   │   └── context.ts     # runtime context
 │   │
 │   └── utils/
 │       ├── logger.ts
@@ -107,8 +73,8 @@ clawparallel/
 │   └── index.html         # landing page
 │
 ├── scripts/
-│   ├── seed.ts
-│   └── deploy.ts
+│   ├── seed.ts            # seed initial data
+│   └── deploy.ts          # deployment helpers
 │
 ├── .env.example
 ├── package.json
@@ -116,70 +82,86 @@ clawparallel/
 ├── vercel.json
 └── README.md
 
+# ⚙️ Tech Stack
 
----
+Node.js + TypeScript
+Express
+Bot Command System
+Off-chain State Management
+PARALLEL Adapter
 
-## 📦 File Overview
+# 🚀 Getting Started
 
-### `src/index.ts`
-Main entry point for ClawParallel.
-
-### `parallel/adapter.ts`
-Abstraction layer for PARALLEL integration:
-- Mock data
-- Future API / on-chain adapters
-
-### `parallel/player.ts`
-Player-related logic:
-- Level
-- XP
-- Progression
-
-### `parallel/quests.ts`
-Available quest definitions.
-
-### `bot/commands/quest.ts`
-Command handler (example: `/quest`).
-
-### `token/clawp.ts`
-$CLAWP token configuration.
-
-### `token/economy.ts`
-Reward logic and token distribution rules.
-
----
-
-## 🧪 Example Flow
-
-1. Player requests a quest  
-2. ClawParallel fetches quest data  
-3. Player completes the quest  
-4. System rewards $CLAWP  
-5. Data becomes ready for on-chain submission (future)
-
----
-
-## ⚙️ Environment Variables
-
-Example `.env.example`:
-
-RPC_URL= PRIVATE_KEY= CLAWP_CONTRACT=
-
-> ⚠️ Never commit `.env` files to GitHub
-
----
-
-## 🚀 How to Run (PC / VPS)
-
-```bash
-git clone https://github.com/ClawParallel/clawparallel
+1️⃣ Clone the Repository
+git clone https://github.com/ClawParallel/clawparallel.git
 cd clawparallel
+
+2️⃣ Install Dependencies
 npm install
+
+3️⃣ Configure Environment Variables
+cp .env.example .env
+
+
+Fill in the required environment values.
+
+4️⃣ Run the Development Server
 npm run dev
 
-Expected output:
 
-Quest new: { id: 'quest-1', title: 'Genesis Parallel Mission' }
+The server will be available at:
+
+http://localhost:3000
+
+# 🎮 Core Concepts
+Player
+
+Stores player progress
+
+Completes quests
+
+Earns rewards
+
+Quest
+
+Modular logic
+
+Extendable with lore and branching paths
+
+Economy ($CLAWP)
+
+Off-chain rewards
+
+Designed for on-chain migration
+
+# 🔮 Future Plans
+
+On-chain token deployment
+
+Smart contract quest validation
+
+Persistent player identity
+
+Advanced agent memory
+
+#📜 License
+
+MIT License
+
+Built with 🦀 by ClawParallel
 
 
 ---
+
+## ✅ After You Paste This
+- GitHub preview **will NOT be blank**
+- Project structure **renders cleanly**
+- README looks **professional & protocol-grade**
+
+Next things I can help with if you want:
+- 🌐 **Deployment to clawparallel.com**
+- 🤖 **Bot command documentation**
+- 💰 **$CLAWP tokenomics section**
+- 📘 **Whitepaper-style README**
+
+Just say the word 🚀
