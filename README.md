@@ -73,12 +73,80 @@ clawparallel/
 │   └── index.html         # landing page
 │
 ├── scripts/
-│   ├── seed.ts            # seed initial data
-│   └── deploy.ts          # deployment helpers
+│   ├── seed.ts
+│   └── deploy.ts
 │
 ├── .env.example
 ├── package.json
 ├── tsconfig.json
 ├── vercel.json
 └── README.md
-____
+```
+
+---
+
+### 2️⃣ Save ke `README.md` di lokal
+- Buka file `README.md`
+- Paste isi di atas
+- **Save (Ctrl+S)**
+
+⚠️ Pastikan file benar-benar terisi sebelum commit.
+
+---
+
+### 3️⃣ Commit perubahan
+Di terminal:
+
+```bash
+git add README.md
+git commit -m "Update README with full project documentation"
+```
+
+---
+
+### 4️⃣ Push ke GitHub
+Pastikan kamu berada di **branch utama** (`main`):
+
+```bash
+git branch
+```
+
+Kalau bukan `main`, checkout dulu:
+
+```bash
+git checkout main
+```
+
+Lalu:
+
+```bash
+git push origin main
+```
+
+---
+
+### 5️⃣ Refresh halaman GitHub
+Buka kembali:
+
+🔗 https://github.com/ClawParallel/clawparallel/blob/main/README.md
+
+Halaman sekarang **harusnya muncul isi README yang kamu paste**.
+
+---
+
+## ⛔ Kalau setelah push masih kosong
+Biasanya ini karena:
+1) Kamu **push ke branch lain**  
+   → cek `git branch -a`  
+2) Konflik fork / default branch bukan `main`  
+   → periksa settings repo  
+3) Push gagal karena credential  
+   → login lagi / set remote
+
+Kalau itu masalahnya, kirim aku:
+- hasil `git branch -a`
+- hasil `git status`
+- output `git remote -v`
+
+Aku bantu kamu **fix langsung** 💪.
+::contentReference[oaicite:1]{index=1}
