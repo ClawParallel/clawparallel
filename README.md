@@ -60,9 +60,59 @@ ClawParallel is **off-chain by default**, but fully designed for **future on-cha
 
 ---
 
-## 📁 Project Structure
-
-clawparallel/ ├── src/ │   ├── index.ts │   ├── parallel/ │   │   ├── adapter.ts │   │   ├── player.ts │   │   └── quests.ts │   ├── bot/ │   │   └── commands/ │   │       └── quest.ts │   └── token/ │       ├── clawp.ts │       └── economy.ts ├── package.json ├── tsconfig.json ├── .env.example └── README.md
+clawparallel/
+├── apps/
+│   ├── agent/
+│   │   ├── index.ts              # entry agent runtime
+│   │   └── lifecycle.ts          # start / stop / health
+│   │
+│   └── web/
+│       ├── server.ts             # express / api server
+│       └── routes.ts             # http routes
+│
+├── core/
+│   ├── config/
+│   │   ├── env.ts                # env loader & validation
+│   │   └── constants.ts
+│   │
+│   ├── parallel/
+│   │   ├── adapter.ts
+│   │   ├── player.ts
+│   │   └── quests.ts
+│   │
+│   ├── token/
+│   │   ├── clawp.ts
+│   │   └── economy.ts
+│   │
+│   ├── state/
+│   │   ├── memory.ts             # agent memory
+│   │   └── context.ts
+│   │
+│   └── utils/
+│       ├── logger.ts
+│       ├── time.ts
+│       └── format.ts
+│
+├── interfaces/
+│   ├── bot/
+│   │   └── commands/
+│   │       └── quest.command.ts
+│   │
+│   └── api/
+│       └── quest.controller.ts
+│
+├── public/
+│   └── index.html                # landing page
+│
+├── scripts/
+│   ├── seed.ts
+│   └── deploy.ts
+│
+├── .env.example
+├── package.json
+├── tsconfig.json
+├── vercel.json
+└── README.md
 
 ---
 
