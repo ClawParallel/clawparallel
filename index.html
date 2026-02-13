@@ -1,116 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ClawParallel Command Center</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClawParallel — PARALLEL System Assistant</title>
 
-<style>
-body {
-  background:#050510;
-  color:white;
-  font-family:Arial;
-}
+  <style>
+    :root {
+      --bg-main: #06060f;
+      --card-bg: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --accent: #0000f8;
+      --accent-2: #00e0ff;
+      --text-main: #ffffff;
+      --text-soft: rgba(255,255,255,0.78);
+    }
 
-.container {
-  max-width:900px;
-  margin:auto;
-  padding:40px 20px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-h1 {
-  text-align:center;
-  margin-bottom:40px;
-  background:linear-gradient(90deg,#0000f8,#00e0ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
+    body {
+      background:
+        radial-gradient(circle at top, #0e0e3d, transparent 55%),
+        linear-gradient(180deg, #020207, var(--bg-main));
+      color: var(--text-main);
+      line-height: 1.6;
+    }
 
-.panel {
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  padding:20px;
-  border-radius:14px;
-  margin-bottom:20px;
-}
+    header {
+      padding: 90px 20px 70px;
+      text-align: center;
+    }
 
-button {
-  padding:12px 18px;
-  margin:8px;
-  border:none;
-  border-radius:10px;
-  background:linear-gradient(90deg,#0000f8,#00e0ff);
-  font-weight:700;
-  cursor:pointer;
-}
-</style>
+    header h1 {
+      font-size: 52px;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      margin-top: 20px;
+      font-size: 18px;
+      color: var(--text-soft);
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .avatar img {
+      width: 170px;
+      height: 170px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 35px rgba(44,44,209,0.25);
+      margin-top: 45px;
+    }
+
+    .hero-box {
+      margin-top: 22px;
+      display: inline-block;
+      padding: 16px 24px;
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(52,52,245,0.2),
+        rgba(30,209,233,0.15)
+      );
+      border: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-size: 34px;
+      margin-bottom: 26px;
+      background: linear-gradient(90deg, #fff, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    .card p {
+      color: var(--text-soft);
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      padding: 70px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-soft);
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <!-- HERO -->
+  <header>
+    <h1>ClawParallel</h1>
+    <p>
+      A colorful yet serious assistant built for the PARALLEL universe.
+      Simple to understand. Powerful by design.
+    </p>
 
-<h1>ClawParallel Command Center</h1>
+    <div class="avatar">
+      <img src="avatar.jpg" alt="ClawParallel Avatar" />
+    </div>
 
-<div class="panel">
-<h3>Agent Status</h3>
-<p>Status: <span id="status">ONLINE</span></p>
-<p>Mode: Autonomous</p>
-<p>Mood: Strategic</p>
-<p>Last Action: Monitoring</p>
-</div>
+    <div class="hero-box">
+      System assistant • Token-coordinated • Protocol-aligned
+    </div>
+  </header>
 
-<div class="panel">
-<h3>Actions</h3>
+  <!-- WHAT IS -->
+  <section>
+    <h2>What is ClawParallel?</h2>
+    <div class="card">
+      <p>
+        ClawParallel is a system assistant that helps users understand,
+        navigate, and interact with the PARALLEL ecosystem.
+      </p>
+      <p>
+        It simplifies information, explains mechanics,
+        and turns complexity into clarity.
+      </p>
+    </div>
+  </section>
 
-<button onclick="deployToken()">Deploy Token</button>
-<button onclick="tweet()">Tweet Announcement</button>
-<button onclick="scan()">Scan Ecosystem</button>
-<button onclick="silence()">Silence Mode</button>
+  <!-- WHAT CAN IT DO -->
+  <section>
+    <h2>What can ClawParallel do?</h2>
+    <div class="card">
+      <p>📌 Explain PARALLEL games, NFTs, and mechanics in simple terms</p>
+      <p>📊 Surface important updates, changes, and signals</p>
+      <p>🤖 Act as an assistant across Discord, X, and web</p>
+      <p>🔐 Unlock features through $CLAWP coordination</p>
+    </div>
+  </section>
 
-</div>
+  <!-- WHO -->
+  <section>
+    <h2>Who is this for?</h2>
+    <div class="card">
+      <p>👤 New users who want clarity, not confusion</p>
+      <p>🎮 Players who want to understand systems faster</p>
+      <p>🧠 Power users who want structured information</p>
+      <p>🌐 Community members building around PARALLEL</p>
+    </div>
+  </section>
 
-<div class="panel">
-<h3>Agent Console</h3>
+  <!-- ROADMAP -->
+  <section>
+    <h2>Roadmap</h2>
+    <div class="card">
+      <p><strong>Phase 1 — Foundation</strong><br>Assistant core & public interface</p>
+      <p><strong>Phase 2 — Integration</strong><br>Discord, X, and PARALLEL adapters</p>
+      <p><strong>Phase 3 — Autonomy</strong><br>On-chain triggers & agent execution</p>
+    </div>
+  </section>
 
-<input id="cmd" placeholder="Enter command..." />
-<button onclick="sendCommand()">Execute</button>
-
-<div id="log" style="margin-top:20px;font-size:14px;"></div>
-
-</div>
-
-</div>
-
-<script>
-function log(msg){
-  document.getElementById("log").innerHTML += "<div>"+msg+"</div>";
-}
-
-async function deployToken(){
-  log("🚀 Deploying token...");
-  await fetch("/api/token/launch",{method:"POST"});
-}
-
-async function tweet(){
-  log("🐦 Tweeting...");
-  await fetch("/api/tweet",{method:"POST"});
-}
-
-async function scan(){
-  log("🧠 Scanning ecosystem...");
-}
-
-async function silence(){
-  log("🔇 Silence mode activated");
-}
-
-function sendCommand(){
-  const cmd = document.getElementById("cmd").value;
-  log("> " + cmd);
-}
-</script>
+  <!-- FOOTER -->
+  <footer>
+    <div style="margin-bottom:12px;">
+      <a href="https://x.com/clawparallel" target="_blank">X / Twitter</a>
+      &nbsp;|&nbsp;
+      <a href="https://discord.gg/7AnKntXSQx" target="_blank">Discord</a>
+    </div>
+    <div>
+      ClawParallel — simple on the surface, powerful underneath.
+    </div>
+  </footer>
 
 </body>
 </html>
-
