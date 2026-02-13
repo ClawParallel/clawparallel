@@ -1,362 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ClawParallel — PARALLEL System Assistant</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ClawParallel — PARALLEL System Assistant</title>
 
-  <style>
-    :root {
-      --bg-main: #06060f;
-      --card-bg: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.12);
-      --accent: #7c7cff;
-      --accent-2: #00e0ff;
-      --text-main: #ffffff;
-      --text-soft: rgba(255,255,255,0.78);
-    }
+<style>
+:root {
+  --bg-main: #06060f;
+  --card-bg: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.12);
+  --accent: #0000f8;
+  --accent-2: #00e0ff;
+  --text-main: #ffffff;
+  --text-soft: rgba(255,255,255,0.78);
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+* {margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
 
-    body {
-      background:
-        radial-gradient(circle at top, #141437, transparent 55%),
-        linear-gradient(180deg, #020207, var(--bg-main));
-      color: var(--text-main);
-      line-height: 1.6;
-    }
+body {
+  background:
+    radial-gradient(circle at top, #0e0e3d, transparent 55%),
+    linear-gradient(180deg, #020207, var(--bg-main));
+  color: var(--text-main);
+}
 
-    header {
-      padding: 90px 20px 70px;
-      text-align: center;
-    }
+header {padding:90px 20px 70px;text-align:center;}
 
-    header h1 {
-      font-size: 52px;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+header h1 {
+  font-size:52px;
+  font-weight:800;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    header p {
-      margin-top: 20px;
-      font-size: 18px;
-      color: var(--text-soft);
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+header p {margin-top:20px;font-size:18px;color:var(--text-soft);}
 
-    .avatar {
-      margin-top: 45px;
-    }
+.avatar img {
+  width:170px;height:170px;border-radius:26px;
+  border:1px solid var(--border);
+  box-shadow:0 0 35px rgba(44,44,209,0.25);
+  margin-top:45px;
+}
 
-    .avatar img {
-      width: 170px;
-      height: 170px;
-      border-radius: 26px;
-      border: 1px solid var(--border);
-      box-shadow: 0 0 35px rgba(124,124,255,0.25);
-      margin-bottom: 22px;
-    }
+.hero-box {
+  margin-top:22px;
+  display:inline-block;
+  padding:16px 24px;
+  border-radius:20px;
+  background:linear-gradient(135deg,rgba(52,52,245,0.2),rgba(30,209,233,0.15));
+  border:1px solid var(--border);
+}
 
-    .hero-box {
-      display: inline-block;
-      padding: 16px 24px;
-      border-radius: 20px;
-      background: linear-gradient(
-        135deg,
-        rgba(124,124,255,0.2),
-        rgba(0,224,255,0.15)
-      );
-      border: 1px solid var(--border);
-      font-size: 14px;
-    }
+section {padding:80px 20px;max-width:960px;margin:0 auto;}
 
-    section {
-      padding: 80px 20px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
+section h2 {
+  font-size:34px;margin-bottom:26px;
+  background:linear-gradient(90deg,#fff,var(--accent));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    section h2 {
-      font-size: 34px;
-      margin-bottom: 26px;
-      background: linear-gradient(90deg, #fff, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.card {
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:26px;
+  margin-bottom:22px;
+}
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 26px;
-      margin-bottom: 22px;
-    }
+.chatbox {
+  background:rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:12px;
+  padding:12px;
+  height:180px;
+  overflow-y:auto;
+  margin-bottom:12px;
+  font-size:14px;
+}
 
-    .card p {
-      color: var(--text-soft);
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+input {
+  width:70%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  background:rgba(255,255,255,0.08);
+  color:white;
+}
 
-    .token-box {
-      background: linear-gradient(
-        135deg,
-        rgba(124,124,255,0.25),
-        rgba(0,224,255,0.18)
-      );
-      border-radius: 26px;
-      padding: 36px;
-      text-align: center;
-      border: 1px solid var(--border);
-      box-shadow: 0 0 45px rgba(0,224,255,0.2);
-    }
+button {
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(90deg,#0000f8,#00e0ff);
+  color:black;
+  font-weight:700;
+  cursor:pointer;
+}
 
-    footer {
-      padding: 70px 20px;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      color: var(--text-soft);
-    }
-
-    a {
-      color: var(--accent-2);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+footer {
+  padding:70px 20px;
+  text-align:center;
+  border-top:1px solid var(--border);
+  color:var(--text-soft);
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <header>
-    <h1>ClawParallel</h1>
-    <p>
-      A colorful yet serious assistant built for the PARALLEL universe.
-      Simple to understand. Powerful by design.
-    </p>
+<header>
+  <h1>ClawParallel</h1>
+  <p>A colorful yet serious assistant built for the PARALLEL universe.</p>
+  <div class="avatar"><img src="avatar.jpg" /></div>
+  <div class="hero-box">System assistant • Token-coordinated • Protocol-aligned</div>
+</header>
 
-    <div class="hero-content">
-  <div class="avatar">
-    <img src="avatar.jpg" alt="ClawParallel Avatar" />
+<!-- ================= AGENT CONTROL PANEL ================= -->
+<section>
+  <h2>ClawParallel Control Interface</h2>
+  <div class="card">
+    <p><strong>Status:</strong> ACTIVE</p>
+    <p><strong>Mood:</strong> Observing</p>
+    <p><strong>Last Action:</strong> Monitoring ecosystem</p>
+
+    <hr style="margin:20px 0;border-color:rgba(255,255,255,0.1);" />
+
+    <p><strong>Chat with ClawParallel</strong></p>
+
+    <div id="chatBox" class="chatbox">
+      🤖 ClawParallel: I am monitoring the Parallel universe.
+    </div>
+
+    <input id="userInput" placeholder="Ask the agent..." />
+    <button onclick="sendMessage()">Send</button>
   </div>
+</section>
 
-  <div class="hero-box">
-    System assistant • Token-coordinated • Protocol-aligned
+<!-- WHAT IS -->
+<section>
+  <h2>What is ClawParallel?</h2>
+  <div class="card">
+    ClawParallel is a system assistant that helps users understand and navigate the PARALLEL ecosystem.
   </div>
-</div>
+</section>
 
-
-  <!-- WHAT IS -->
-  <section>
-    <h2>What is ClawParallel?</h2>
-    <div class="card">
-      <p>
-        ClawParallel is a system assistant that helps users understand,
-        navigate, and interact with the PARALLEL ecosystem.
-      </p>
-      <p>
-        It simplifies information, explains mechanics,
-        and turns complexity into clarity.
-      </p>
-    </div>
-  </section>
-
-  <!-- SPECIAL SECTION -->
-  <section>
-    <h2>What can ClawParallel do?</h2>
-
-    <div class="card">
-      <p>📌 Explain PARALLEL games, NFTs, and mechanics in simple terms</p>
-      <p>📊 Surface important updates, changes, and signals</p>
-      <p>🤖 Act as an assistant across Discord, X, and web</p>
-      <p>🔐 Unlock features through $CLAWP coordination</p>
-    </div>
-  </section>
-
-  <!-- WHO -->
-  <section>
-    <h2>Who is this for?</h2>
-
-    <div class="card">
-      <p>👤 New users who want clarity, not confusion</p>
-      <p>🎮 Players who want to understand systems faster</p>
-      <p>🧠 Power users who want structured information</p>
-      <p>🌐 Community members building around PARALLEL</p>
-    </div>
-  </section>
-
-  <!-- TOKEN -->
-  <section>
-    <h2>$CLAWP Token</h2>
-
-    <div class="token-box">
-  <h3>$CLAWP</h3>
-
-  <p style="margin-bottom:6px;">
+<!-- TOKEN -->
+<section>
+  <h2>$CLAWP Token</h2>
+  <div class="card">
     The coordination token of ClawParallel.
-  </p>
-
-  <p style="margin-bottom:12px;">
-    Used for access, signaling, automation triggers,
-    and future agent permissions.
-  </p>
-
-  <!-- COUNTDOWN -->
-  <div
-    id="countdown"
-    style="
-      margin:16px 0 6px;
-      font-size:18px;
-      font-weight:700;
-    "
-  >
-    Token live in: --
   </div>
+</section>
 
-  <div style="font-size:13px;opacity:0.75;">
-    Live between 20:00 – 21:00 UTC<br>
+<footer>
+  <div>
+    <a href="https://x.com/clawparallel" target="_blank">X / Twitter</a> |
+    <a href="https://discord.gg/7AnKntXSQx" target="_blank">Discord</a>
   </div>
+  <div>ClawParallel — simple on the surface, powerful underneath.</div>
+</footer>
 
-<!-- BUTTON -->
-<div style="margin-top:18px;">
-  <a
-    id="actionButton"
-    href="https://clanker.world/token/0x598D0b9ac438d10112C048564c3Db989A969eb07"
-    target="_blank"
-    style="
-      display:inline-block;
-      padding:12px 26px;
-      border-radius:14px;
-      background:linear-gradient(90deg,#7c7cff,#00e0ff);
-      color:#000;
-      font-weight:800;
-      font-size:14px;
-      text-decoration:none;
-    "
-  >
-    Trade $CLAWP
-  </a>
-</div>
-
-  View on Clanker
-    </a>
-    <!-- CONTRACT ADDRESS -->
-<div style="margin-top:14px;font-size:13px;opacity:0.85;">
-  Contract Address
-</div>
-
-<div
-  onclick="copyCA()"
-  style="
-    margin-top:6px;
-    padding:10px 14px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.2);
-    cursor:pointer;
-    font-size:13px;
-    word-break:break-all;
-  "
-> 0x598D0b9ac438d10112C048564c3Db989A969eb07
-  <span id="ca">
-    
-  </span>
-</div>
-
-<div
-  id="copyStatus"
-  style="margin-top:6px;font-size:12px;opacity:0.6;"
-></div>
-  </div>
-
-  <p style="margin-top:18px;opacity:0.7;font-size:13px;">
-    Deployed via Clanker. No VC. No shortcuts.
-  </p>
-    </div>
-
-  <!-- ROADMAP -->
-  <section>
-    <h2>Roadmap</h2>
-
-    <div class="card">
-      <p><strong>Phase 1 — Foundation</strong><br>Assistant core & public interface</p>
-      <p><strong>Phase 2 — Integration</strong><br>Discord, X, and PARALLEL adapters</p>
-      <p><strong>Phase 3 — Autonomy</strong><br>On-chain triggers & agent execution</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div style="margin-bottom:12px;">
-      <a href="https://x.com/clawparallel" target="_blank">X / Twitter</a>
-      &nbsp;|&nbsp;
-      <a href="https://discord.gg/7AnKntXSQx" target="_blank">Discord</a>
-    </div>
-    <div>
-      ClawParallel — simple on the surface, powerful underneath.
-    </div>
-  </footer>
 <script>
-  const launchTimeUTC = new Date(Date.UTC(
-    2026, 1, 3, 20, 0, 0
-  ));
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chat = document.getElementById("chatBox");
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = launchTimeUTC - now;
+  if (!input.value) return;
 
-    const countdown = document.getElementById("countdown");
-    const btn = document.getElementById("actionButton");
+  chat.innerHTML += "<div>👤 You: " + input.value + "</div>";
 
-    if (!countdown || !btn) return;
+  const replies = [
+    "Parallel is a sci-fi strategy universe.",
+    "Bankr enables autonomous token launches.",
+    "CLAWP coordinates actions across agents.",
+    "I am observing ecosystem signals."
+  ];
 
-    if (diff <= 0) {
-      countdown.innerHTML = "🚀 Token is LIVE";
+  const reply = replies[Math.floor(Math.random()*replies.length)];
 
-      btn.innerHTML = "Trade $CLAWP";
-      btn.href = "https://clanker.world/clanker/0x598D0b9ac438d10112C048564c3Db989A969eb07";
+  chat.innerHTML += "<div>🤖 ClawParallel: " + reply + "</div>";
 
-      return;
-    }
-
-    const h = Math.floor(diff / (1000 * 60 * 60));
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-
-    countdown.innerHTML =
-      "Token live in: " +
-      String(h).padStart(2, "0") + ":" +
-      String(m).padStart(2, "0") + ":" +
-      String(s).padStart(2, "0");
-  }
-
-  function copyCA() {
-    const text = document.getElementById("ca").innerText;
-    navigator.clipboard.writeText(text);
-
-    const status = document.getElementById("copyStatus");
-    status.innerHTML = "Copied to clipboard ✔";
-
-    setTimeout(() => {
-      status.innerHTML = "";
-    }, 2000);
-  }
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  input.value = "";
+  chat.scrollTop = chat.scrollHeight;
+}
 </script>
+
 </body>
 </html>
+
