@@ -164,30 +164,28 @@ footer {
 </footer>
 
 <script>
-function sendMessage() {
-  const input = document.getElementById("userInput");
+async function sendMessage() {
+  const input = document.getElementById("chatInput");
   const chat = document.getElementById("chatBox");
 
-  if (!input.value) return;
+  const userMsg = input.value;
+  if (!userMsg) return;
 
-  chat.innerHTML += "<div>👤 You: " + input.value + "</div>";
-
-  const replies = [
-    "Parallel is a sci-fi strategy universe.",
-    "Bankr enables autonomous token launches.",
-    "CLAWP coordinates actions across agents.",
-    "I am observing ecosystem signals."
-  ];
-
-  const reply = replies[Math.floor(Math.random()*replies.length)];
-
-  chat.innerHTML += "<div>🤖 ClawParallel: " + reply + "</div>";
-
+  chat.innerHTML += `<div>You: ${userMsg}</div>`;
   input.value = "";
-  chat.scrollTop = chat.scrollHeight;
-}
-</script>
 
+  const res = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: userMsg })
+  });
+
+  const data = await res.json();
+
+  chat.innerHTML += `<div>ClawParallel: ${data.reply}</div>`;
+}
+
+</script>
 </body>
 </html>
 
