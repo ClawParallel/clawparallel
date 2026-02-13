@@ -3,196 +3,114 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ClawParallel — PARALLEL System Assistant</title>
+<title>ClawParallel Command Center</title>
 
 <style>
-:root {
-  --bg-main: #06060f;
-  --card-bg: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.12);
-  --accent: #0000f8;
-  --accent-2: #00e0ff;
-  --text-main: #ffffff;
-  --text-soft: rgba(255,255,255,0.78);
-}
-
-* {margin:0;padding:0;box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;}
-
 body {
-  background:
-    radial-gradient(circle at top, #0e0e3d, transparent 55%),
-    linear-gradient(180deg, #020207, var(--bg-main));
-  color: var(--text-main);
-}
-
-header {padding:90px 20px 70px;text-align:center;}
-
-header h1 {
-  font-size:52px;
-  font-weight:800;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-header p {margin-top:20px;font-size:18px;color:var(--text-soft);}
-
-.avatar img {
-  width:170px;height:170px;border-radius:26px;
-  border:1px solid var(--border);
-  box-shadow:0 0 35px rgba(44,44,209,0.25);
-  margin-top:45px;
-}
-
-.hero-box {
-  margin-top:22px;
-  display:inline-block;
-  padding:16px 24px;
-  border-radius:20px;
-  background:linear-gradient(135deg,rgba(52,52,245,0.2),rgba(30,209,233,0.15));
-  border:1px solid var(--border);
-}
-
-section {padding:80px 20px;max-width:960px;margin:0 auto;}
-
-section h2 {
-  font-size:34px;margin-bottom:26px;
-  background:linear-gradient(90deg,#fff,var(--accent));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.card {
-  background:var(--card-bg);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:26px;
-  margin-bottom:22px;
-}
-
-.chatbox {
-  background:rgba(0,0,0,0.35);
-  border:1px solid rgba(255,255,255,0.15);
-  border-radius:12px;
-  padding:12px;
-  height:220px;
-  overflow-y:auto;
-  margin-bottom:12px;
-  font-size:14px;
-}
-
-input {
-  width:70%;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  background:rgba(255,255,255,0.08);
+  background:#050510;
   color:white;
+  font-family:Arial;
+}
+
+.container {
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+h1 {
+  text-align:center;
+  margin-bottom:40px;
+  background:linear-gradient(90deg,#0000f8,#00e0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.panel {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  padding:20px;
+  border-radius:14px;
+  margin-bottom:20px;
 }
 
 button {
-  padding:10px 16px;
+  padding:12px 18px;
+  margin:8px;
   border:none;
   border-radius:10px;
   background:linear-gradient(90deg,#0000f8,#00e0ff);
-  color:black;
   font-weight:700;
   cursor:pointer;
-}
-
-footer {
-  padding:70px 20px;
-  text-align:center;
-  border-top:1px solid var(--border);
-  color:var(--text-soft);
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>ClawParallel</h1>
-  <p>A colorful yet serious assistant built for the PARALLEL universe.</p>
-  <div class="avatar"><img src="avatar.jpg" /></div>
-  <div class="hero-box">System assistant • Token-coordinated • Protocol-aligned</div>
-</header>
+<div class="container">
 
-<section>
-  <h2>ClawParallel Control Interface</h2>
-  <div class="card">
+<h1>ClawParallel Command Center</h1>
 
-    <p><strong>Status:</strong> ACTIVE</p>
-    <p><strong>Mood:</strong> Strategic</p>
-    <p><strong>Last Action:</strong> Monitoring ecosystem</p>
+<div class="panel">
+<h3>Agent Status</h3>
+<p>Status: <span id="status">ONLINE</span></p>
+<p>Mode: Autonomous</p>
+<p>Mood: Strategic</p>
+<p>Last Action: Monitoring</p>
+</div>
 
-    <hr style="margin:20px 0;border-color:rgba(255,255,255,0.1);" />
+<div class="panel">
+<h3>Actions</h3>
 
-    <p><strong>Chat with ClawParallel</strong></p>
+<button onclick="deployToken()">Deploy Token</button>
+<button onclick="tweet()">Tweet Announcement</button>
+<button onclick="scan()">Scan Ecosystem</button>
+<button onclick="silence()">Silence Mode</button>
 
-    <div id="chatBox" class="chatbox">
-      🤖 ClawParallel: I am online. State your objective.
-    </div>
+</div>
 
-    <input id="userInput" placeholder="Ask the agent..." />
-    <button onclick="sendMessage()">Send</button>
+<div class="panel">
+<h3>Agent Console</h3>
 
-  </div>
-</section>
+<input id="cmd" placeholder="Enter command..." />
+<button onclick="sendCommand()">Execute</button>
 
-<section>
-  <h2>What is ClawParallel?</h2>
-  <div class="card">
-    ClawParallel is an autonomous AI agent operating within the PARALLEL ecosystem.
-  </div>
-</section>
+<div id="log" style="margin-top:20px;font-size:14px;"></div>
 
-<section>
-  <h2>$CLAWP Token</h2>
-  <div class="card">
-    The coordination token of ClawParallel.
-  </div>
-</section>
+</div>
 
-<footer>
-  <div>
-    <a href="https://x.com/clawparallel" target="_blank">X / Twitter</a> |
-    <a href="https://discord.gg/7AnKntXSQx" target="_blank">Discord</a>
-  </div>
-  <div>ClawParallel — simple on the surface, powerful underneath.</div>
-</footer>
+</div>
 
 <script>
-async function sendMessage() {
-  const input = document.getElementById("userInput");
-  const chat = document.getElementById("chatBox");
+function log(msg){
+  document.getElementById("log").innerHTML += "<div>"+msg+"</div>";
+}
 
-  const message = input.value;
-  if (!message) return;
+async function deployToken(){
+  log("🚀 Deploying token...");
+  await fetch("/api/token/launch",{method:"POST"});
+}
 
-  chat.innerHTML += "<div>👤 You: " + message + "</div>";
-  input.value = "";
+async function tweet(){
+  log("🐦 Tweeting...");
+  await fetch("/api/tweet",{method:"POST"});
+}
 
-  chat.innerHTML += "<div>🤖 ClawParallel: thinking...</div>";
-  chat.scrollTop = chat.scrollHeight;
+async function scan(){
+  log("🧠 Scanning ecosystem...");
+}
 
-  try {
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
-    });
+async function silence(){
+  log("🔇 Silence mode activated");
+}
 
-    const data = await res.json();
-
-    chat.innerHTML += "<div>🤖 ClawParallel: " + data.reply + "</div>";
-  } catch (e) {
-    chat.innerHTML += "<div>⚠️ Agent connection failed</div>";
-  }
-
-  chat.scrollTop = chat.scrollHeight;
+function sendCommand(){
+  const cmd = document.getElementById("cmd").value;
+  log("> " + cmd);
 }
 </script>
 
 </body>
 </html>
+
