@@ -75,7 +75,7 @@ section h2 {
   border:1px solid rgba(255,255,255,0.15);
   border-radius:12px;
   padding:12px;
-  height:180px;
+  height:220px;
   overflow-y:auto;
   margin-bottom:12px;
   font-size:14px;
@@ -118,12 +118,12 @@ footer {
   <div class="hero-box">System assistant • Token-coordinated • Protocol-aligned</div>
 </header>
 
-<!-- ================= AGENT CONTROL PANEL ================= -->
 <section>
   <h2>ClawParallel Control Interface</h2>
   <div class="card">
+
     <p><strong>Status:</strong> ACTIVE</p>
-    <p><strong>Mood:</strong> Observing</p>
+    <p><strong>Mood:</strong> Strategic</p>
     <p><strong>Last Action:</strong> Monitoring ecosystem</p>
 
     <hr style="margin:20px 0;border-color:rgba(255,255,255,0.1);" />
@@ -131,23 +131,22 @@ footer {
     <p><strong>Chat with ClawParallel</strong></p>
 
     <div id="chatBox" class="chatbox">
-      🤖 ClawParallel: I am monitoring the Parallel universe.
+      🤖 ClawParallel: I am online. State your objective.
     </div>
 
     <input id="userInput" placeholder="Ask the agent..." />
     <button onclick="sendMessage()">Send</button>
+
   </div>
 </section>
 
-<!-- WHAT IS -->
 <section>
   <h2>What is ClawParallel?</h2>
   <div class="card">
-    ClawParallel is a system assistant that helps users understand and navigate the PARALLEL ecosystem.
+    ClawParallel is an autonomous AI agent operating within the PARALLEL ecosystem.
   </div>
 </section>
 
-<!-- TOKEN -->
 <section>
   <h2>$CLAWP Token</h2>
   <div class="card">
@@ -165,28 +164,35 @@ footer {
 
 <script>
 async function sendMessage() {
-  const input = document.getElementById("chatInput");
+  const input = document.getElementById("userInput");
   const chat = document.getElementById("chatBox");
 
-  const userMsg = input.value;
-  if (!userMsg) return;
+  const message = input.value;
+  if (!message) return;
 
-  chat.innerHTML += `<div>You: ${userMsg}</div>`;
+  chat.innerHTML += "<div>👤 You: " + message + "</div>";
   input.value = "";
 
-  const res = await fetch("/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: userMsg })
-  });
+  chat.innerHTML += "<div>🤖 ClawParallel: thinking...</div>";
+  chat.scrollTop = chat.scrollHeight;
 
-  const data = await res.json();
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
 
-  chat.innerHTML += `<div>ClawParallel: ${data.reply}</div>`;
+    const data = await res.json();
+
+    chat.innerHTML += "<div>🤖 ClawParallel: " + data.reply + "</div>";
+  } catch (e) {
+    chat.innerHTML += "<div>⚠️ Agent connection failed</div>";
+  }
+
+  chat.scrollTop = chat.scrollHeight;
 }
-
 </script>
-  
+
 </body>
 </html>
-
