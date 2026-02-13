@@ -3,92 +3,161 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ClawParallel — PARALLEL System Assistant</title>
+
+<title>ClawParallel — Autonomous Parallel Agent</title>
 
 <style>
+
+/* ===== BACKGROUND ===== */
 body{
-  background:#06060f;
+  margin:0;
+  font-family:Orbitron, Arial, sans-serif;
   color:white;
-  font-family:Arial;
-  text-align:center;
+
+  background:#05070f;
+  background-image:url("background.jpg"); /* ← ganti nanti */
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
 }
 
+/* ===== OVERLAY ===== */
+.overlay{
+  background:rgba(5,7,15,0.85);
+  min-height:100vh;
+  padding:40px 20px;
+}
+
+/* ===== HEADER ===== */
+.title{
+  font-size:48px;
+  font-weight:bold;
+  letter-spacing:2px;
+  margin-bottom:10px;
+
+  background:linear-gradient(90deg,#00e0ff,#7a5cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+  opacity:0.7;
+  margin-bottom:30px;
+}
+
+/* ===== CHAT PANEL ===== */
 .chatbox{
-  max-width:600px;
-  margin:40px auto;
+  max-width:700px;
+  margin:0 auto;
   background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
   padding:20px;
-  border-radius:12px;
+  border-radius:16px;
+  border:1px solid rgba(0,224,255,0.2);
+  box-shadow:0 0 40px rgba(0,224,255,0.15);
 }
 
+/* ===== MESSAGES ===== */
 #messages{
-  height:220px;
+  height:260px;
   overflow-y:auto;
   text-align:left;
-  margin-bottom:10px;
+  margin-bottom:14px;
   font-size:14px;
 }
 
+/* ===== INPUT ===== */
 input{
-  width:75%;
-  padding:10px;
-  border-radius:8px;
+  width:72%;
+  padding:12px;
+  border-radius:10px;
   border:none;
-  background:#111;
+  background:#0d1220;
   color:white;
+  outline:none;
 }
 
 button{
-  padding:10px 16px;
+  padding:12px 18px;
   border:none;
-  border-radius:8px;
-  background:#00e0ff;
+  border-radius:10px;
+  background:linear-gradient(90deg,#00e0ff,#7a5cff);
+  color:black;
   font-weight:bold;
   cursor:pointer;
+  transition:0.2s;
 }
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #00e0ff;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  margin-top:40px;
+  opacity:0.5;
+  font-size:12px;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>ClawParallel</h1>
-<p>Ask about Parallel or Bankr</p>
+<div class="overlay">
 
-<div class="chatbox">
+  <div class="title">CLAWPARALLEL</div>
+  <div class="subtitle">Autonomous Agent — Parallel Ecosystem Operator</div>
 
-<div id="messages">
-🤖 ClawParallel: I am online. Ask me about Parallel or Bankr.
+  <div class="chatbox">
+
+    <div id="messages">
+      🤖 ClawParallel: System online. Awaiting command.
+    </div>
+
+    <input id="userInput" placeholder="Speak to the agent..." />
+    <button onclick="sendMessage()">Send</button>
+
+  </div>
+
+  <div class="footer">
+    Powered by Parallel • Bankr • Autonomous Agent System
+  </div>
+
 </div>
 
-<input id="input" placeholder="Ask something..." />
-<button onclick="send()">Send</button>
-
-</div>
 
 <script>
-async function send(){
-  const input = document.getElementById("input");
-  const messages = document.getElementById("messages");
+async function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chat = document.getElementById("messages");
 
-  const text = input.value;
-  if(!text) return;
+  if (!input.value) return;
 
-  messages.innerHTML += "<div>👤 You: " + text + "</div>";
+  const msg = input.value;
+
+  chat.innerHTML += "<div>👤 You: " + msg + "</div>";
+
+  try {
+    const res = await fetch("https://clawparallel.com/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: msg })
+    });
+
+    const data = await res.json();
+
+    chat.innerHTML += "<div>🤖 ClawParallel: " + data.reply + "</div>";
+
+  } catch (err) {
+    chat.innerHTML += "<div>❌ Connection to agent failed</div>";
+  }
+
   input.value = "";
-
-  messages.innerHTML += "<div>🤖 ClawParallel: thinking...</div>";
-
-  const res = await fetch("/api/chat", {
-    method:"POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({message:text})
-  });
-
-  const data = await res.json();
-
-  messages.innerHTML += "<div>🤖 ClawParallel: " + data.reply + "</div>";
-
-  messages.scrollTop = messages.scrollHeight;
+  chat.scrollTop = chat.scrollHeight;
 }
 </script>
 
