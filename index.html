@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>ClawParallel — Autonomous Parallel Agent</title>
+<title>ClawParallel — Autonomous Agent</title>
 
 <style>
 
@@ -15,7 +15,7 @@ body{
   color:white;
 
   background:#05070f;
-  background-image:url("background.jpg"); /* ← ganti nanti */
+  background-image:url("background.jpg"); /* ganti jika ada */
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
@@ -23,17 +23,26 @@ body{
 
 /* ===== OVERLAY ===== */
 .overlay{
-  background:rgba(5,7,15,0.85);
+  background:rgba(5,7,15,0.88);
   min-height:100vh;
   padding:40px 20px;
+  text-align:center;
 }
 
-/* ===== HEADER ===== */
+/* ===== LOGO ===== */
+.logo{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  margin-bottom:16px;
+  box-shadow:0 0 40px #00e0ff;
+}
+
+/* ===== TITLE ===== */
 .title{
   font-size:48px;
   font-weight:bold;
   letter-spacing:2px;
-  margin-bottom:10px;
 
   background:linear-gradient(90deg,#00e0ff,#7a5cff);
   -webkit-background-clip:text;
@@ -47,10 +56,10 @@ body{
 
 /* ===== CHAT PANEL ===== */
 .chatbox{
-  max-width:700px;
+  max-width:720px;
   margin:0 auto;
   background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(14px);
   padding:20px;
   border-radius:16px;
   border:1px solid rgba(0,224,255,0.2);
@@ -68,7 +77,7 @@ body{
 
 /* ===== INPUT ===== */
 input{
-  width:72%;
+  width:70%;
   padding:12px;
   border-radius:10px;
   border:none;
@@ -107,9 +116,15 @@ button:hover{
 
 <div class="overlay">
 
-  <div class="title">CLAWPARALLEL</div>
-  <div class="subtitle">Autonomous Agent — Parallel Ecosystem Operator</div>
+  <!-- 🔥 LOGO -->
+  <img src="avatar.jpg" class="logo" alt="ClawParallel Logo">
 
+  <div class="title">CLAWPARALLEL</div>
+  <div class="subtitle">
+    Autonomous Agent — Parallel Ecosystem Operator
+  </div>
+
+  <!-- 🧠 CHAT TERMINAL -->
   <div class="chatbox">
 
     <div id="messages">
@@ -130,6 +145,7 @@ button:hover{
 
 <script>
 async function sendMessage() {
+
   const input = document.getElementById("userInput");
   const chat = document.getElementById("messages");
 
@@ -140,7 +156,9 @@ async function sendMessage() {
   chat.innerHTML += "<div>👤 You: " + msg + "</div>";
 
   try {
-    const res = await fetch("https://clawparallel.com/api/chat", {
+
+    /* 🔥 NANTI GANTI JADI URL DEPLOY SERVER */
+    const res = await fetch("https://YOUR-SERVER/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -153,7 +171,7 @@ async function sendMessage() {
     chat.innerHTML += "<div>🤖 ClawParallel: " + data.reply + "</div>";
 
   } catch (err) {
-    chat.innerHTML += "<div>❌ Connection to agent failed</div>";
+    chat.innerHTML += "<div>❌ Agent offline</div>";
   }
 
   input.value = "";
