@@ -6,16 +6,19 @@
 
 <title>ClawParallel — Autonomous Agent</title>
 
+<!-- 🤖 AGENT FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
 <style>
 
-/* ===== BACKGROUND ===== */
+/* ===== BASE ===== */
 body{
   margin:0;
-  font-family:Orbitron, Arial, sans-serif;
+  font-family:'Share Tech Mono', monospace;
   color:white;
 
   background:#05070f;
-  background-image:url(parallel.jpg.jpg);
+  background-image:url("parallel.jpg.jpg");
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
@@ -27,6 +30,10 @@ body{
   min-height:100vh;
   padding:40px 20px;
   text-align:center;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 /* ===== LOGO ===== */
@@ -40,9 +47,10 @@ body{
 
 /* ===== TITLE ===== */
 .title{
+  font-family:'Orbitron', sans-serif;
   font-size:48px;
   font-weight:bold;
-  letter-spacing:2px;
+  letter-spacing:3px;
 
   background:linear-gradient(90deg,#00e0ff,#7a5cff);
   -webkit-background-clip:text;
@@ -52,12 +60,15 @@ body{
 .subtitle{
   opacity:0.7;
   margin-bottom:30px;
+  max-width:600px;
+  letter-spacing:1px;
 }
 
 /* ===== CHAT PANEL ===== */
 .chatbox{
+  width:100%;
   max-width:720px;
-  margin:0 auto;
+
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(14px);
   padding:20px;
@@ -75,9 +86,14 @@ body{
   font-size:14px;
 }
 
-/* ===== INPUT ===== */
+/* ===== INPUT AREA ===== */
+.input-area{
+  display:flex;
+  gap:10px;
+}
+
 input{
-  width:70%;
+  flex:1;
   padding:12px;
   border-radius:10px;
   border:none;
@@ -95,11 +111,77 @@ button{
   font-weight:bold;
   cursor:pointer;
   transition:0.2s;
+  font-family:'Orbitron', sans-serif;
 }
 
 button:hover{
   transform:scale(1.05);
   box-shadow:0 0 20px #00e0ff;
+}
+
+/* ===== TOKEN PANEL ===== */
+.token-panel{
+  margin-top:24px;
+  width:100%;
+  max-width:720px;
+
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(14px);
+  padding:18px;
+  border-radius:16px;
+  border:1px solid rgba(122,92,255,0.3);
+  box-shadow:0 0 40px rgba(122,92,255,0.15);
+}
+
+.token-title{
+  font-family:'Orbitron', sans-serif;
+  font-size:20px;
+  margin-bottom:6px;
+
+  background:linear-gradient(90deg,#7a5cff,#00e0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.token-info{
+  opacity:0.7;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.ca-box{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+#ca{
+  background:#0d1220;
+  padding:10px;
+  border-radius:8px;
+  font-size:12px;
+  word-break:break-all;
+}
+
+.token-panel button{
+  background:#7a5cff;
+  color:white;
+}
+
+.token-links{
+  margin-top:12px;
+}
+
+.token-links a{
+  color:#00e0ff;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.token-links a:hover{
+  text-decoration:underline;
 }
 
 /* ===== FOOTER ===== */
@@ -109,6 +191,23 @@ button:hover{
   font-size:12px;
 }
 
+/* ===== MOBILE ===== */
+@media (max-width: 768px){
+
+  .title{ font-size:34px; }
+
+  .logo{ width:70px; height:70px; }
+
+  .chatbox{ padding:16px; }
+
+  #messages{ height:220px; }
+
+  .input-area{ flex-direction:column; }
+
+  button{ width:100%; padding:14px; }
+
+}
+
 </style>
 </head>
 
@@ -116,23 +215,48 @@ button:hover{
 
 <div class="overlay">
 
-  <!-- 🔥 LOGO -->
-  <img src="avatar.jpg" class="logo" alt="ClawParallel Logo">
+  <img src="avatar.jpg" class="logo">
 
-  <div class="title">𝗖𝗟𝗔𝗪𝗣𝗔𝗥𝗔𝗟𝗟𝗘𝗟</div>
+  <div class="title">CLAWPARALLEL</div>
   <div class="subtitle">
-    𝗔𝗨𝗧𝗢𝗡𝗢𝗠𝗢𝗨𝗦 𝗔𝗚𝗘𝗡𝗧-𝗣𝗔𝗥𝗔𝗟𝗟𝗘𝗟 𝗘𝗖𝗢𝗦𝗬𝗦𝗧𝗘𝗠 𝗢𝗣𝗘𝗥𝗔𝗧𝗢𝗥
+    AUTONOMOUS AGENT — PARALLEL ECOSYSTEM OPERATOR
   </div>
 
-  <!-- 🧠 CHAT TERMINAL -->
+  <!-- 🧠 CHAT -->
   <div class="chatbox">
 
     <div id="messages">
-      🤖 𝗖𝗹𝗮𝘄𝗣𝗮𝗿𝗮𝗹𝗹𝗲𝗹: 𝗦𝘆𝘀𝘁𝗲𝗺 𝗼𝗻𝗹𝗶𝗻𝗲｡ 𝗔𝘄𝗮𝗶𝘁𝗶𝗻𝗴 𝗰𝗼𝗺𝗺𝗮𝗻𝗱｡
+      🤖 ClawParallel: SYSTEM ONLINE. AWAITING COMMAND.
     </div>
 
-    <input id="userInput" placeholder="Speak to the agent..." />
-    <button onclick="sendMessage()">Send</button>
+    <div class="input-area">
+      <input id="userInput" placeholder="Speak to the agent..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+  </div>
+
+  <!-- 🪙 TOKEN PANEL -->
+  <div class="token-panel">
+
+    <div class="token-title">CLAWP TOKEN</div>
+
+    <div class="token-info">
+      Coordination token of the ClawParallel ecosystem
+    </div>
+
+    <div class="ca-box">
+      <span id="ca">
+        0x58e826965d72fd7872c324b4b3421c27161f7ba3
+      </span>
+      <button onclick="copyCA()">COPY CA</button>
+    </div>
+
+    <div class="token-links">
+      <a href="https://dexscreener.com/base/0x58e826965d72fd7872c324b4b3421c27161f7ba3" target="_blank">
+        VIEW ON DEXSCREENER
+      </a>
+    </div>
 
   </div>
 
@@ -142,8 +266,14 @@ button:hover{
 
 </div>
 
-
 <script>
+
+function copyCA() {
+  const ca = document.getElementById("ca").innerText;
+  navigator.clipboard.writeText(ca);
+  alert("CA copied to clipboard");
+}
+
 async function sendMessage() {
 
   const input = document.getElementById("userInput");
@@ -153,30 +283,27 @@ async function sendMessage() {
 
   const msg = input.value;
 
-  chat.innerHTML += "<div>👤 You: " + msg + "</div>";
+  chat.innerHTML += "<div>👤 YOU: " + msg + "</div>";
 
   try {
-
-    /* 🔥 NANTI GANTI JADI URL DEPLOY SERVER */
     const res = await fetch("https://YOUR-SERVER/api/chat", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: msg })
     });
 
     const data = await res.json();
 
-    chat.innerHTML += "<div>🤖 ClawParallel: " + data.reply + "</div>";
+    chat.innerHTML += "<div>🤖 CLAWPARALLEL: " + data.reply + "</div>";
 
   } catch (err) {
-    chat.innerHTML += "<div>❌ Agent offline</div>";
+    chat.innerHTML += "<div>❌ AGENT OFFLINE</div>";
   }
 
   input.value = "";
   chat.scrollTop = chat.scrollHeight;
 }
+
 </script>
 
 </body>
