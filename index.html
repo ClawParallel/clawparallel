@@ -1,362 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ClawParallel — PARALLEL System Assistant</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <style>
-    :root {
-      --bg-main: #06060f;
-      --card-bg: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.12);
-      --accent: #7c7cff;
-      --accent-2: #00e0ff;
-      --text-main: #ffffff;
-      --text-soft: rgba(255,255,255,0.78);
-    }
+<title>ClawParallel — Autonomous Agent</title>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<!-- 🤖 AGENT FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-    body {
-      background:
-        radial-gradient(circle at top, #141437, transparent 55%),
-        linear-gradient(180deg, #020207, var(--bg-main));
-      color: var(--text-main);
-      line-height: 1.6;
-    }
+<style>
 
-    header {
-      padding: 90px 20px 70px;
-      text-align: center;
-    }
+/* ===== BASE ===== */
+body{
+  margin:0;
+  font-family:'Share Tech Mono', monospace;
+  color:white;
 
-    header h1 {
-      font-size: 52px;
-      font-weight: 800;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  background:#05070f;
+  background-image:url("parallel.jpg.jpg");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
 
-    header p {
-      margin-top: 20px;
-      font-size: 18px;
-      color: var(--text-soft);
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+/* ===== OVERLAY ===== */
+.overlay{
+  background:rgba(5,7,15,0.88);
+  min-height:100vh;
+  padding:40px 20px;
+  text-align:center;
 
-    .avatar {
-      margin-top: 45px;
-    }
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
 
-    .avatar img {
-      width: 170px;
-      height: 170px;
-      border-radius: 26px;
-      border: 1px solid var(--border);
-      box-shadow: 0 0 35px rgba(124,124,255,0.25);
-      margin-bottom: 22px;
-    }
+/* ===== LOGO ===== */
+.logo{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  margin-bottom:16px;
+  box-shadow:0 0 40px #00e0ff;
+}
 
-    .hero-box {
-      display: inline-block;
-      padding: 16px 24px;
-      border-radius: 20px;
-      background: linear-gradient(
-        135deg,
-        rgba(124,124,255,0.2),
-        rgba(0,224,255,0.15)
-      );
-      border: 1px solid var(--border);
-      font-size: 14px;
-    }
+/* ===== TITLE ===== */
+.title{
+  font-family:'Orbitron', sans-serif;
+  font-size:48px;
+  font-weight:bold;
+  letter-spacing:3px;
 
-    section {
-      padding: 80px 20px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
+  background:linear-gradient(90deg,#00e0ff,#7a5cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-    section h2 {
-      font-size: 34px;
-      margin-bottom: 26px;
-      background: linear-gradient(90deg, #fff, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+.subtitle{
+  opacity:0.7;
+  margin-bottom:30px;
+  max-width:600px;
+  letter-spacing:1px;
+}
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 26px;
-      margin-bottom: 22px;
-    }
+/* ===== CHAT PANEL ===== */
+.chatbox{
+  width:100%;
+  max-width:720px;
 
-    .card p {
-      color: var(--text-soft);
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(14px);
+  padding:20px;
+  border-radius:16px;
+  border:1px solid rgba(0,224,255,0.2);
+  box-shadow:0 0 40px rgba(0,224,255,0.15);
+}
 
-    .token-box {
-      background: linear-gradient(
-        135deg,
-        rgba(124,124,255,0.25),
-        rgba(0,224,255,0.18)
-      );
-      border-radius: 26px;
-      padding: 36px;
-      text-align: center;
-      border: 1px solid var(--border);
-      box-shadow: 0 0 45px rgba(0,224,255,0.2);
-    }
+/* ===== MESSAGES ===== */
+#messages{
+  height:260px;
+  overflow-y:auto;
+  text-align:left;
+  margin-bottom:14px;
+  font-size:14px;
+}
 
-    footer {
-      padding: 70px 20px;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      color: var(--text-soft);
-    }
+/* ===== INPUT AREA ===== */
+.input-area{
+  display:flex;
+  gap:10px;
+}
 
-    a {
-      color: var(--accent-2);
-      text-decoration: none;
-    }
+input{
+  flex:1;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  background:#0d1220;
+  color:white;
+  outline:none;
+}
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+button{
+  padding:12px 18px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(90deg,#00e0ff,#7a5cff);
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.2s;
+  font-family:'Orbitron', sans-serif;
+}
+
+button:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #00e0ff;
+}
+
+/* ===== TOKEN PANEL ===== */
+.token-panel{
+  margin-top:24px;
+  width:100%;
+  max-width:720px;
+
+  background:rgba(255,255,255,0.04);
+  backdrop-filter:blur(14px);
+  padding:18px;
+  border-radius:16px;
+  border:1px solid rgba(122,92,255,0.3);
+  box-shadow:0 0 40px rgba(122,92,255,0.15);
+}
+
+.token-title{
+  font-family:'Orbitron', sans-serif;
+  font-size:20px;
+  margin-bottom:6px;
+
+  background:linear-gradient(90deg,#7a5cff,#00e0ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.token-info{
+  opacity:0.7;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.ca-box{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+#ca{
+  background:#0d1220;
+  padding:10px;
+  border-radius:8px;
+  font-size:12px;
+  word-break:break-all;
+}
+
+.token-panel button{
+  background:#7a5cff;
+  color:white;
+}
+
+.token-links{
+  margin-top:12px;
+}
+
+.token-links a{
+  color:#00e0ff;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.token-links a:hover{
+  text-decoration:underline;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  margin-top:40px;
+  opacity:0.5;
+  font-size:12px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px){
+
+  .title{ font-size:34px; }
+
+  .logo{ width:70px; height:70px; }
+
+  .chatbox{ padding:16px; }
+
+  #messages{ height:220px; }
+
+  .input-area{ flex-direction:column; }
+
+  button{ width:100%; padding:14px; }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <header>
-    <h1>ClawParallel</h1>
-    <p>
-      A colorful yet serious assistant built for the PARALLEL universe.
-      Simple to understand. Powerful by design.
-    </p>
+<div class="overlay">
 
-    <div class="hero-content">
-  <div class="avatar">
-    <img src="avatar.jpg" alt="ClawParallel Avatar" />
+  <img src="avatar.jpg" class="logo">
+
+  <div class="title">CLAWPARALLEL</div>
+  <div class="subtitle">
+    AUTONOMOUS AGENT — PARALLEL ECOSYSTEM OPERATOR
   </div>
 
-  <div class="hero-box">
-    System assistant • Token-coordinated • Protocol-aligned
+  <!-- 🧠 CHAT -->
+  <div class="chatbox">
+
+    <div id="messages">
+      🤖 ClawParallel: SYSTEM ONLINE. AWAITING COMMAND.
+    </div>
+
+    <div class="input-area">
+      <input id="userInput" placeholder="Speak to the agent..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
   </div>
+
+  <!-- 🪙 TOKEN PANEL -->
+  <div class="token-panel">
+
+    <div class="token-title">CLAWP TOKEN</div>
+
+    <div class="token-info">
+      Coordination token of the ClawParallel ecosystem
+    </div>
+
+    <div class="ca-box">
+      <span id="ca">
+        0x58e826965d72fd7872c324b4b3421c27161f7ba3
+      </span>
+      <button onclick="copyCA()">COPY CA</button>
+    </div>
+
+    <div class="token-links">
+      <a href="https://dexscreener.com/base/0x58e826965d72fd7872c324b4b3421c27161f7ba3" target="_blank">
+        VIEW ON DEXSCREENER
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Powered by Parallel • Bankr • Autonomous Agent System
+  </div>
+
 </div>
 
-
-  <!-- WHAT IS -->
-  <section>
-    <h2>What is ClawParallel?</h2>
-    <div class="card">
-      <p>
-        ClawParallel is a system assistant that helps users understand,
-        navigate, and interact with the PARALLEL ecosystem.
-      </p>
-      <p>
-        It simplifies information, explains mechanics,
-        and turns complexity into clarity.
-      </p>
-    </div>
-  </section>
-
-  <!-- SPECIAL SECTION -->
-  <section>
-    <h2>What can ClawParallel do?</h2>
-
-    <div class="card">
-      <p>📌 Explain PARALLEL games, NFTs, and mechanics in simple terms</p>
-      <p>📊 Surface important updates, changes, and signals</p>
-      <p>🤖 Act as an assistant across Discord, X, and web</p>
-      <p>🔐 Unlock features through $CLAWP coordination</p>
-    </div>
-  </section>
-
-  <!-- WHO -->
-  <section>
-    <h2>Who is this for?</h2>
-
-    <div class="card">
-      <p>👤 New users who want clarity, not confusion</p>
-      <p>🎮 Players who want to understand systems faster</p>
-      <p>🧠 Power users who want structured information</p>
-      <p>🌐 Community members building around PARALLEL</p>
-    </div>
-  </section>
-
-  <!-- TOKEN -->
-  <section>
-    <h2>$CLAWP Token</h2>
-
-    <div class="token-box">
-  <h3>$CLAWP</h3>
-
-  <p style="margin-bottom:6px;">
-    The coordination token of ClawParallel.
-  </p>
-
-  <p style="margin-bottom:12px;">
-    Used for access, signaling, automation triggers,
-    and future agent permissions.
-  </p>
-
-  <!-- COUNTDOWN -->
-  <div
-    id="countdown"
-    style="
-      margin:16px 0 6px;
-      font-size:18px;
-      font-weight:700;
-    "
-  >
-    Token live in: --
-  </div>
-
-  <div style="font-size:13px;opacity:0.75;">
-    Live between 20:00 – 21:00 UTC<br>
-  </div>
-
-<!-- BUTTON -->
-<div style="margin-top:18px;">
-  <a
-    id="actionButton"
-    href="https://clanker.world/token/0x598D0b9ac438d10112C048564c3Db989A969eb07"
-    target="_blank"
-    style="
-      display:inline-block;
-      padding:12px 26px;
-      border-radius:14px;
-      background:linear-gradient(90deg,#7c7cff,#00e0ff);
-      color:#000;
-      font-weight:800;
-      font-size:14px;
-      text-decoration:none;
-    "
-  >
-    Trade $CLAWP
-  </a>
-</div>
-
-  View on Clanker
-    </a>
-    <!-- CONTRACT ADDRESS -->
-<div style="margin-top:14px;font-size:13px;opacity:0.85;">
-  Contract Address
-</div>
-
-<div
-  onclick="copyCA()"
-  style="
-    margin-top:6px;
-    padding:10px 14px;
-    border-radius:12px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.2);
-    cursor:pointer;
-    font-size:13px;
-    word-break:break-all;
-  "
-> 0x598D0b9ac438d10112C048564c3Db989A969eb07
-  <span id="ca">
-    
-  </span>
-</div>
-
-<div
-  id="copyStatus"
-  style="margin-top:6px;font-size:12px;opacity:0.6;"
-></div>
-  </div>
-
-  <p style="margin-top:18px;opacity:0.7;font-size:13px;">
-    Deployed via Clanker. No VC. No shortcuts.
-  </p>
-    </div>
-
-  <!-- ROADMAP -->
-  <section>
-    <h2>Roadmap</h2>
-
-    <div class="card">
-      <p><strong>Phase 1 — Foundation</strong><br>Assistant core & public interface</p>
-      <p><strong>Phase 2 — Integration</strong><br>Discord, X, and PARALLEL adapters</p>
-      <p><strong>Phase 3 — Autonomy</strong><br>On-chain triggers & agent execution</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div style="margin-bottom:12px;">
-      <a href="https://x.com/clawparallel" target="_blank">X / Twitter</a>
-      &nbsp;|&nbsp;
-      <a href="https://discord.gg/7AnKntXSQx" target="_blank">Discord</a>
-    </div>
-    <div>
-      ClawParallel — simple on the surface, powerful underneath.
-    </div>
-  </footer>
 <script>
-  const launchTimeUTC = new Date(Date.UTC(
-    2026, 1, 3, 20, 0, 0
-  ));
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = launchTimeUTC - now;
+function copyCA() {
+  const ca = document.getElementById("ca").innerText;
+  navigator.clipboard.writeText(ca);
+  alert("CA copied to clipboard");
+}
 
-    const countdown = document.getElementById("countdown");
-    const btn = document.getElementById("actionButton");
+async function sendMessage() {
 
-    if (!countdown || !btn) return;
+  const input = document.getElementById("userInput");
+  const chat = document.getElementById("messages");
 
-    if (diff <= 0) {
-      countdown.innerHTML = "🚀 Token is LIVE";
+  if (!input.value) return;
 
-      btn.innerHTML = "Trade $CLAWP";
-      btn.href = "https://clanker.world/clanker/0x598D0b9ac438d10112C048564c3Db989A969eb07";
+  const msg = input.value;
 
-      return;
-    }
+  chat.innerHTML += "<div>👤 YOU: " + msg + "</div>";
 
-    const h = Math.floor(diff / (1000 * 60 * 60));
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
+  try {
+    const res = await fetch("https://YOUR-SERVER/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg })
+    });
 
-    countdown.innerHTML =
-      "Token live in: " +
-      String(h).padStart(2, "0") + ":" +
-      String(m).padStart(2, "0") + ":" +
-      String(s).padStart(2, "0");
+    const data = await res.json();
+
+    chat.innerHTML += "<div>🤖 CLAWPARALLEL: " + data.reply + "</div>";
+
+  } catch (err) {
+    chat.innerHTML += "<div>❌ AGENT OFFLINE</div>";
   }
 
-  function copyCA() {
-    const text = document.getElementById("ca").innerText;
-    navigator.clipboard.writeText(text);
+  input.value = "";
+  chat.scrollTop = chat.scrollHeight;
+}
 
-    const status = document.getElementById("copyStatus");
-    status.innerHTML = "Copied to clipboard ✔";
-
-    setTimeout(() => {
-      status.innerHTML = "";
-    }, 2000);
-  }
-
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
 </script>
+
 </body>
 </html>
